@@ -46,6 +46,9 @@ class Board:
 	def place_cell(self, x, y, player):
 		if not self.cells[(x, y)].value:
 			self.cells[(x, y)].set_value(player)
+			return self.cells[(x, y)]
+		else:
+			return False
 		print(f"{x}, {y}: {player}")
 
 	def winner(self, player):
@@ -71,6 +74,11 @@ if __name__ == "__main__":
 		my_input = input("XY:")
 		x, y = parse_input(my_input)
 
-		board.place_cell(x, y, player)
+		cell = board.place_cell(x, y, player)
+		while not cell:
+			print("Cell already occupied; try again.")
+			my_input = input("XY:")
+			x, y = parse_input(my_input)
+			cell = board.place_cell(x, y, player)
 		winner = board.winner(player)
 	print(f"Winner: {player}")
