@@ -49,7 +49,11 @@ class Board:
 			return self.cells[(x, y)]
 		else:
 			return False
-		print(f"{x}, {y}: {player}")
+
+	def print(self):
+		for row in self.rows:
+			print(''.join([cell.value or '.' for cell in row]))
+		print()  # Empty line to clearly separate turns
 
 	def winner(self, player):
 		for row in self.rows:
@@ -71,7 +75,7 @@ if __name__ == "__main__":
 	turn = take_turn()
 	while not winner:
 		player = next(turn)
-		my_input = input("XY:")
+		my_input = input(f"Player {player}: XY? ")
 		x, y = parse_input(my_input)
 
 		cell = board.place_cell(x, y, player)
@@ -80,5 +84,6 @@ if __name__ == "__main__":
 			my_input = input("XY:")
 			x, y = parse_input(my_input)
 			cell = board.place_cell(x, y, player)
+		board.print()
 		winner = board.winner(player)
 	print(f"Winner: {player}")
