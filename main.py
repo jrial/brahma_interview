@@ -34,6 +34,9 @@ class Board:
 		for i in range(self.dimension):
 			for j in range(self.dimension):
 				self.cells[(i, j)] = Cell()
+		# All of this assumes rather small boards. This is a tradeoff between speed and size:
+		# For a large board, you may want to make these #properties and recompute at every turn.
+		# For smaller boards, size isn't much of an issue, so just initialise as attributes on init.
 		for r in range(self.dimension):
 			self.rows.append([self.cells[(r, y)] for y in range(self.dimension)])
 		for c in range(self.dimension):
