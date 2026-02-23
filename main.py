@@ -28,11 +28,20 @@ class Cell():
 class Board:
 	dimension = 3
 	cells = {}
+	rows = []
+	cols = []
+	diagonals = []
 
 	def __init__(self):
 		for i in range(self.dimension):
 			for j in range(self.dimension):
 				self.cells[(i, j)] = Cell(i, j)
+		for r in range(self.dimension):
+			self.rows.append([self.cells[(r, y)] for y in range(self.dimension)])
+		for c in range(self.dimension):
+			self.cols.append([self.cells[(x, c)] for x in range(self.dimension)])
+		self.diagonals.append([self.cells[(x, x)] for x in range(self.dimension)])
+		self.diagonals.append([self.cells[(x, self.dimension - x - 1)] for x in range(self.dimension)])
 
 	def place_cell(self, x, y, player):
 		if not self.cells[(x, y)].value:
@@ -40,18 +49,15 @@ class Board:
 		print(f"{x}, {y}: {player}")
 
 	def winner(self, player):
-		for row in range(self.dimension):
-			for col in range(self.dimension):
-				if all([row[x][y] == player for x in row for y in col]):
-					return True
-		for col in range(self.dimension):
-			for row in range(self.dimension):
-				if all([row[x][y] == player for x in row for y in col]):
-					return True
-		if all([self.cells[x][x] == player for x in range(self.dimension)]):
-			return True
-		if all([self.cells[x][self.dimension - x] == player for x in range(self.dimension)]):
-			return True
+		for row in self.rows:
+			if all([cell.value == player for cell in row]):
+				return True
+		for col in self.cols:
+			if all([cell.value == player for cell in col]):
+				return True
+		for diagonal in self.diagonals:
+			if all([cell.value == player for cell in diagonal]):
+				return True
 		return False
 
 
