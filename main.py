@@ -15,7 +15,7 @@ class Board:
 	dimension = 3
 	cells = {}
 
-	def _init__(self):
+	def __init__(self):
 		for i in range(self.dimension):
 			for j in range(self.dimension):
 				self.cells[i][j] = None
