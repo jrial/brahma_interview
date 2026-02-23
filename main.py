@@ -13,9 +13,7 @@ def parse_input(input):
 
 class Cell():
 	# Yes, can also be done with pydantic or simple dataclasses, which would save us an init.
-	def __init__(self, x, y):
-		self.x = x
-		self.y = y
+	def __init__(self):
 		self.value = None
 
 	def set_value(self, value):
@@ -35,7 +33,7 @@ class Board:
 	def __init__(self):
 		for i in range(self.dimension):
 			for j in range(self.dimension):
-				self.cells[(i, j)] = Cell(i, j)
+				self.cells[(i, j)] = Cell()
 		for r in range(self.dimension):
 			self.rows.append([self.cells[(r, y)] for y in range(self.dimension)])
 		for c in range(self.dimension):
