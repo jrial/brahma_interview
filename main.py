@@ -7,8 +7,8 @@ def take_turn():
 		yield 'Y'
 
 def parse_input(input):
-	row = input[0]
-	col = input[1]
+	row = int(input[0])
+	col = int(input[1])
 	return row, col
 
 class Board:
