@@ -65,8 +65,9 @@ class Board:
 if __name__ == "__main__":
 	board = Board()
 	winner = False
+	turn = take_turn()
 	while not winner:
-		player = next(take_turn())
+		player = next(turn)
 		my_input = input("XY:")
 		x, y = parse_input(my_input)
 
