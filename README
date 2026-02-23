@@ -1,0 +1,5 @@
+# Brahma AI live coding exercises
+
+Not the cleanest solution, but this is what would've been delivered given some extra time, a responsive VM, and a less nervous jrial.
+
+Obviously, there are areas ripe for improvement. The fact that input isn't sanitised, and that the application crashes with out-of-bounds errors if you try to place stuff outside the board, for example. This isn't intended as an example of production code; I merely finished this to the point I would have during the job interview because it bothers me that I bungled such a simple task. Guess a career as a coding streamer is out of the question... ;)
